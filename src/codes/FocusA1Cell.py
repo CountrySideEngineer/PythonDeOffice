@@ -42,7 +42,6 @@ def SetFocusOnA1Cell(target_sheet):
 	sv.selection[0].sqref = 'A1'
 	sv.selection[0].activeCellId = None
 
-
 if '__main__' == __name__:
 	file_path = sys.argv[1]
 	FocusA1Cell(file_path)
