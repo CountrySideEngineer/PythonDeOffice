@@ -3,6 +3,18 @@ import sys
 import openpyxl
 from openpyxl import worksheet
 
+def SetPrintAreaAuto(path:str) -> None:
+	"""Set the print area into AUTO.
+	
+	Setup the print area of all sheets in a file specified by argument into AUTO.
+
+	Args:
+		path(str): Path to file to setup the print area.
+	"""
+	v_page = 0
+	h_page = 0
+	SetPrintArea(path=path, v_page=v_page, h_page=h_page)
+	
 def SetPrintAreaAPage(path:str) -> None:
 	"""Setup the print area into 1 page.
 	
