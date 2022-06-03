@@ -16,6 +16,7 @@ def SetViewMode(path:str, mode:str):
 		SetViewModeOfSheet(sheet, mode=mode)
 	
 	wb.save(path)
+	wb.close()
 
 def SetViewModeOfSheet(sheet, mode:str) -> None:
 	"""Set sheet mode.
@@ -65,7 +66,7 @@ def SetViewModeLayout(path:str) -> None:
 	"""
 	mode = 'pageLayout'
 	SetViewMode(path=path, mode=mode)
-
+	
 if '__main__' == __name__:
 	file_path = sys.argv[1]
 	mode = int(sys.argv[2])
