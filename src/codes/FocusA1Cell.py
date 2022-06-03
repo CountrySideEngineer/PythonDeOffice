@@ -21,6 +21,7 @@ def FocusA1Cell(excel_file_path):
 			SetFocusOnA1Cell(ws)
 
 		wb.save(excel_file_path)
+		wb.close()
 	except Exception:
 		print(Exception.message)
 
