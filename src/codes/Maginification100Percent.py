@@ -20,6 +20,7 @@ def Magnify100Percent(excel_file_path:str) -> None:
 			SetMagnification100Per(ws)
 
 		wb.save(excel_file_path)
+		wb.close()
 	except Exception:
 		print(Exception.message)
 

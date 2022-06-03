@@ -26,6 +26,7 @@ def ActivateLeftMostSheet(excel_file_path):
 	wb.active = wb.worksheets[0]
 
 	wb.save(excel_file_path)
+	wb.close()
 
 if '__main__' == __name__:
 	excel_file_path = sys.argv[1]

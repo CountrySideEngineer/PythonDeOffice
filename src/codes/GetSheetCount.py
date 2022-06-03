@@ -17,6 +17,7 @@ def GetSheetCount(path:str) -> int:
 	"""
 	wb = openpyxl.load_workbook(path)
 	sheet_num = len(wb.worksheets)
+	wb.close()
 	return sheet_num
 
 if '__main__' == __name__:
