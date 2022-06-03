@@ -43,6 +43,7 @@ def SetPrintArea(path:str, v_page:int, h_page:int) -> None:
 		_SetupPrintAreaInASheet(sheet=sheet_item, v_page=v_page, h_page=h_page)
 
 	wb.save(path)
+	wb.close()
 
 def _SetupPrintAreaInASheet(sheet:worksheet, v_page:int, h_page:int) -> None:
 	"""Set print area of a sheet.
