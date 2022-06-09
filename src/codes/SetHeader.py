@@ -128,6 +128,7 @@ def JoinHeaderText(headers:list) -> str:
 		if False == is_top:
 			header_text += '\n'
 		header_text += header_item
+		is_top = False
 
 	return header_text
 
@@ -143,7 +144,6 @@ def SetHeader(header_part:_HeaderFooterPart, headers:list) -> None:
 	"""
 	headers_text = JoinHeaderText(headers=headers)
 	header_part.text = headers_text
-
 
 if '__main__' == __name__:
 	path = sys.argv[1]
