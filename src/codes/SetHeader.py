@@ -2,6 +2,7 @@ import sys
 import openpyxl
 from openpyxl import worksheet
 from openpyxl.worksheet.header_footer import _HeaderFooterPart
+import JointText as jt
 
 def HeaderFuncPointer(path:str, headers:list, header_func) -> None:
 	"""Set header of excel file.
@@ -109,29 +110,6 @@ def SetPageHeaderCenter(sheet:worksheet, headers:list) -> None:
 	header_part = sheet.oddHeader.left
 	SetHeader(header_part=header_part, headers=headers)
 
-def JoinHeaderText(headers:list) -> str:
-	"""Join strings by change line code.
-	
-	Join strings by change line code as headers
-
-	Args:
-		headers(list):	Collection of strings to set into header.
-						One item is one line in header.
-						When output, all items are joined by change line code.
-
-	Returns:
-		String to be set into header.
-	"""
-	header_text = ''
-	is_top = True
-	for header_item in headers:
-		if False == is_top:
-			header_text += '\n'
-		header_text += header_item
-		is_top = False
-
-	return header_text
-
 def SetHeader(header_part:_HeaderFooterPart, headers:list) -> None:
 	"""Set header.
 
@@ -142,7 +120,7 @@ def SetHeader(header_part:_HeaderFooterPart, headers:list) -> None:
 						When output, all items are joined by change line code.
 
 	"""
-	headers_text = JoinHeaderText(headers=headers)
+	headers_text = jt.JoinText(headers=headers)
 	header_part.text = headers_text
 
 if '__main__' == __name__:
