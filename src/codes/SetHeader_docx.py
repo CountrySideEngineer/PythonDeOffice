@@ -1,8 +1,4 @@
-from operator import le
-import os
-from pydoc import doc
 import sys
-import tarfile
 import docx
 from docx import Document
 
