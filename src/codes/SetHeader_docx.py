@@ -1,21 +1,55 @@
 import sys
-import docx
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.section import Sections
 
 def SetHeaderLeft(path:str, headers:list) -> None:
+	"""Set header of left.
+
+	Args:
+		path(str): Path to file of docx to set header.
+		headers(list):	Collection of strings to set into header
+						One item is one line in header.
+						All items will be joined by "change line" code.
+	"""
 	align_func = SetHeaderAlignmentLeft
 	HeaderFuncPointer(path=path, headers=headers, align_func=align_func)
 
 def SetHeaderCenter(path:str, headers:list) -> None:
+	"""Set header of center.
+
+	Args:
+		path(str): Path to file of docx to set header.
+		headers(list):	Collection of strings to set into header
+						One item is one line in header.
+						All items will be joined by "change line" code.
+	"""
 	align_func = SetHeaderAlignmentCenter
 	HeaderFuncPointer(path=path, headers=headers, align_func=align_func)
 
 def SetHeaderRight(path:str, headers:list) -> None:
+	"""Set header of right.
+
+	Args:
+		path(str): Path to file of docx to set header.
+		headers(list):	Collection of strings to set into header
+						One item is one line in header.
+						All items will be joined by "change line" code.
+	"""
 	align_func = SetHeaderAlignmentRight
 	HeaderFuncPointer(path=path, headers=headers, align_func=align_func)
 
 def HeaderFuncPointer(path:str, headers:list, align_func) -> None:
+	"""Set header of word file.
+
+	Args:
+		path(str):	Path to file to set header.
+		headers(list):	Collection of strings to set into header
+						One item is one line in header.
+						All items will be joined by "change line" code.
+		align_func:	Function object to set alignment.
+	
+	"""
 	document = Document(path)
 	sections = document.sections
 	section_header = sections[0].header
@@ -28,16 +62,36 @@ def HeaderFuncPointer(path:str, headers:list, align_func) -> None:
 
 	document.save(path)
 
-def SetHeaderAlignmentRight(paragrah) -> None:
-	paragrah.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-
 def SetHeaderAlignmentLeft(paragrah) -> None:
+	"""Set alignment left to paragraph
+	
+	Args:
+		paragraph:	Paragraph to set alignment.
+	"""
 	paragrah.alignment = WD_ALIGN_PARAGRAPH.LEFT
 
 def SetHeaderAlignmentCenter(paragrah) -> None:
+	"""Set alignment center to paragraph
+	
+	Args:
+		paragraph:	Paragraph to set alignment.
+	"""
 	paragrah.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-def RemoveHeader(header_section:docx.section.Sections) -> None:
+def SetHeaderAlignmentRight(paragrah) -> None:
+	"""Set alignment right to paragraph
+	
+	Args:
+		paragraph:	Paragraph to set alignment.
+	"""
+	paragrah.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+
+def RemoveHeader(header_section:Sections) -> None:
+	"""Remove hedaer in document.
+	
+	Args:
+		header_section(Sections): Sections obeject of header.
+	"""
 	paragraphs = header_section.paragraphs
 	for paragraph in paragraphs:
 		element = paragraph._element
