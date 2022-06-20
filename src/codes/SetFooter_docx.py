@@ -54,8 +54,6 @@ def FooterFuncPointer(path:str, footers:list, align_func) -> None:
 	sections = document.sections
 	section_footer = sections[0].footer
 
-	paragraph_sections = document.paragraphs
-
 	RemoveFooter(footer_section=section_footer)
 
 	for footer_item in footers:
