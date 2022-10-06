@@ -107,7 +107,7 @@ def SetPageFooterCenter(sheet:worksheet, headers:list) -> None:
 						One item is one line in header.
 						When output, all items are joined by change line code.
 	"""
-	header_part = sheet.oddFooter.Center
+	header_part = sheet.oddFooter.center
 	SetFooter(footer_part=header_part, headers=headers)
 
 def SetFooter(footer_part:_HeaderFooterPart, headers:list) -> None:
@@ -125,5 +125,5 @@ def SetFooter(footer_part:_HeaderFooterPart, headers:list) -> None:
 if '__main__' == __name__:
 	path = sys.argv[1]
 	argc = len(sys.argv)
-	headers = sys.argv[1:argc]
-	SetFooterRight(path=path, headers=headers)
+	headers = sys.argv[2:argc]
+	SetFooterCenter(path=path, headers=headers)
