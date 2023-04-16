@@ -20,14 +20,44 @@ class ExcelFileHeader(ExcelFile):
 		dst.headers.append(item)
 
 	def GetLeftPartFromSheet(self, sheet : worksheet) -> _HeaderFooterPart:
+		"""Retunrs left header object
+
+		Returns left header object in a sheet as _HeaderFooterPart.
+
+		Args:
+			sheet(worksheet) : Openpyxl worksheet object.
+
+		Returns:
+			_HeaderFooterPart object of left side header in a sheet.
+		"""
 		part = sheet.oddHeader.left
 		return part
 
 	def GetCenterPartFromSheet(self, sheet : worksheet) -> _HeaderFooterPart:
+		"""Retunrs center header object
+
+		Returns center header object in a sheet as _HeaderFooterPart.
+
+		Args:
+			sheet(worksheet) : Openpyxl worksheet object.
+
+		Returns:
+			_HeaderFooterPart object of center side header in a sheet.
+		"""
 		part = sheet.oddHeader.center
 		return part
 
 	def GetRightPartFromSheet(self, sheet : worksheet) -> _HeaderFooterPart:
+		"""Retunrs right header object
+
+		Returns right header object in a sheet as _HeaderFooterPart.
+
+		Args:
+			sheet(worksheet) : Openpyxl worksheet object.
+
+		Returns:
+			_HeaderFooterPart object of right side header in a sheet.
+		"""
 		part = sheet.oddHeader.right
 		return part
 
