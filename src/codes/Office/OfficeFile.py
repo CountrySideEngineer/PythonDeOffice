@@ -13,5 +13,6 @@ class IOfficeFile(metaclass=abc.ABCMeta):
 	def WriteAll(self, item : OfficeHeaderFooter) -> None:
 		raise NotImplementedError()
 
+	@abc.abstractmethod
 	def Read(self) -> list:
 		raise NotImplementedError()
