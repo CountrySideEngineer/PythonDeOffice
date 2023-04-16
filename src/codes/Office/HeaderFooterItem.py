@@ -7,3 +7,6 @@ class HeaderFooterItem():
 		"""
 		self.item = ""		# string object as header or foooter content.
 
+	def ToString(self) :
+		print('item = ', self.item)
+

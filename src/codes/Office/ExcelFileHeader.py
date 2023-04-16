@@ -36,4 +36,7 @@ if __name__ == '__main__':
 	header = ExcelFileHeader(path)
 
 	headers = header.Read()
-	print('footers')
+	print('header len = ', len(headers))
+	for header_item in headers:
+		print(header_item.ToString())
+	
