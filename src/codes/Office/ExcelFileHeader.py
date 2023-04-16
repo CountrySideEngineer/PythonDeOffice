@@ -38,5 +38,5 @@ if __name__ == '__main__':
 	headers = header.Read()
 	print('header len = ', len(headers))
 	for header_item in headers:
-		print(header_item.ToString())
+		header_item.ToString()
 	
