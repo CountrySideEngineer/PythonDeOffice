@@ -8,11 +8,26 @@ class ExcelHeaderConfig(ExcelPageConfig):
 		super().__init__()
 
 	def Export(self, path : str) -> None:
+		"""Export excel page config to a file.
+
+		Exports excel page config as OfficeHeaderFooter object into a file.
+
+		Args:
+			path(str) : Path to file to export.
+		
+		"""
 		config_as_lsit = self.ConfigToList()
 		self.formatter.content = config_as_lsit
 		self.formatter.Write(path=path)
 
 	def ConfigToList(self) -> list:
+		"""Convert excel page configuration into list.
+
+		Converts excel page configuration as OfficeHeaderFooter object.
+
+		Returns:
+			Config parameters as list
+		"""
 		headers = []
 		for item in self.config:
 			name = item.name
