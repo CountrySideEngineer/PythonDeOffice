@@ -1,4 +1,5 @@
 from ExcelPageConfig import ExcelPageConfig
+from OfficeHeaderFooter import OfficeHeaderFooter
 
 class ExcelHeaderConfig(ExcelPageConfig):
 	def __init__(self):
@@ -7,14 +8,40 @@ class ExcelHeaderConfig(ExcelPageConfig):
 		super().__init__()
 
 	def Export(self, path : str) -> None:
-		file = open(path, mode = 'w')
+		config_as_lsit = self.ConfigToList()
+		self.formatter.content = config_as_lsit
+		self.formatter.Write(path=path)
 
-		file.close()
+	def ConfigToList(self) -> list:
+		headers = []
+		for item in self.config:
+			name = item.name
+			header_item = []
+			header_item.append(name)
+			for header in item.headers:
+				header_item.append(header)
 
+			headers.append(header_item)
 
+		return list(headers)
 
 	def Import(self, path : str) -> None:
+		raise NotImplementedError()
 
+if __name__ == '__main__':
+	item1 = OfficeHeaderFooter()
+	item1.name = 'sheet1'
+	item1.headers = ['item1-11', 'item1-12', 'item1-13']
 
+	item2 = OfficeHeaderFooter()
+	item2.name = 'sheet2'
+	item2.headers = ['item2-11', 'item2-12', 'item2-13']
 
-	
+	contents = []
+	contents.append(item1)
+	contents.append(item2)
+
+	config = ExcelHeaderConfig()
+	config.config = contents
+	path = r'E:\development\PythonDeOffice\src\samples\ExcelHeaderConfig_csv_sample.csv'
+	config.Export(path)
