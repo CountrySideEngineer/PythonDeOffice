@@ -12,6 +12,19 @@ class ExcelPageConfigCsvFormatter(ExcelPageConfigFormatter):
 		csv_writer.writerows(self.content)
 		file.close()
 
+	def Read(self, path : str) -> list:
+		rows = []
+		file = open(path, mode='r')
+		csv_reader = csv.reader(file)
+		for row in csv_reader:
+			print(', '.join(row))
+
+			rows.append(row)
+
+		file.close()
+
+		return rows
+
 if __name__ == '__main__':
 	content = [
 		['item11', 'item12', 'item13', 'item14'],
@@ -21,3 +34,6 @@ if __name__ == '__main__':
 	formatter = ExcelPageConfigCsvFormatter(content)
 	path = r'E:\development\PythonDeOffice\src\samples\formatter_csv_sample.csv'
 	formatter.Write(path)
+
+	formatter.Read(path)
+
