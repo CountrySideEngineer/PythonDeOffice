@@ -41,7 +41,25 @@ class ExcelHeaderConfig(ExcelPageConfig):
 		return list(headers)
 
 	def Import(self, path : str) -> None:
-		raise NotImplementedError()
+		"""Imports excel page cofig as OfficeHeaderFooter object from file.
+
+		Args:
+			path(str) : Path to file to import from.
+		"""
+		self.formatter.Read(path)
+		self.ListToConfig(self.formatter.content)
+
+
+	def ListToConfig(self, item_list : list) -> None:
+		self.config = []
+		for item in item_list:
+			config = OfficeHeaderFooter()
+			config.name = item[0]
+			config.headers.append(item[1])
+			config.headers.append(item[2])
+			config.headers.append(item[3])
+
+			self.config.append(config)
 
 if __name__ == '__main__':
 	item1 = OfficeHeaderFooter()
@@ -60,3 +78,7 @@ if __name__ == '__main__':
 	config.config = contents
 	path = r'E:\development\PythonDeOffice\src\samples\ExcelHeaderConfig_csv_sample.csv'
 	config.Export(path)
+
+	config.Import(path)
+
+	print(','.join(config.config))
