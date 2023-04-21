@@ -1,5 +1,6 @@
 from ExcelPageConfig import ExcelPageConfig
 from OfficeHeaderFooter import OfficeHeaderFooter
+from HeaderFooterItem import HeaderFooterItem as hfitem
 
 class ExcelFooterConfig(ExcelPageConfig):
 	def __init__(self):
@@ -34,7 +35,7 @@ class ExcelFooterConfig(ExcelPageConfig):
 			footer_item = []
 			footer_item.append(name)
 			for footer in item.footers:
-				footer_item.append(footer)
+				footer_item.append(footer.item)
 
 			footers.append(footer_item)
 
@@ -78,11 +79,11 @@ class ExcelFooterConfig(ExcelPageConfig):
 if __name__ == '__main__':
 	item1 = OfficeHeaderFooter()
 	item1.name = 'sheet1'
-	item1.footers = ['footer_item1-11', 'footer_item1-12', 'footer_item1-13']
+	item1.footers = [hfitem('footer_item1-11'), hfitem('footer_item1-12'), hfitem('footer_item1-13')]
 
 	item2 = OfficeHeaderFooter()
 	item2.name = 'sheet2'
-	item2.footers = ['footer_item2-11', 'footer_item2-12', 'footer_item2-13']
+	item2.footers = [hfitem('footer_item2-11'), hfitem('footer_item2-12'), hfitem('footer_item2-13')]
 
 	contents = []
 	contents.append(item1)
