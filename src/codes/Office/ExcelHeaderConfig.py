@@ -49,7 +49,6 @@ class ExcelHeaderConfig(ExcelPageConfig):
 		self.formatter.Read(path)
 		self.ListToConfig(self.formatter.content)
 
-
 	def ListToConfig(self, item_list : list) -> None:
 		self.config = []
 		for item in item_list:
@@ -79,6 +78,8 @@ if __name__ == '__main__':
 	path = r'E:\development\PythonDeOffice\src\samples\ExcelHeaderConfig_csv_sample.csv'
 	config.Export(path)
 
+	config.config = []
 	config.Import(path)
 
-	print(','.join(config.config))
+	for config_item in config.config:
+		print(config_item.name, ',', ' , '.join(config_item.headers))
