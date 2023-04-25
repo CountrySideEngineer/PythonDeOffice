@@ -16,9 +16,51 @@ class ExcelFile(OfficeFile.IOfficeFile):
 
 	def Write(self, item : OfficeHeaderFooter) -> None:
 		print('Write')
+		wb = openpyxl.load_workbook(self.path)
+
+		header_footer_item = self.ExportItem(src=item)
+
+		for sheet_name in wb.sheetnames:
+			ws = wb[sheet_name]
+			try:
+				left_part = self.GetLeftPartFromSheet(sheet=ws)
+				left_item = header_footer_item[0]
+				self.WriteIntoPart(part=left_part, item=left_item)
+
+				center_part = self.GetCenterPartFromSheet(sheet=ws)
+				center_item = header_footer_item[1]
+				self.WriteIntoPart(part=center_part, item=center_item)
+
+				right_part = self.GetRightPartFromSheet(sheet=ws)
+				right_item = header_footer_item[2]
+				self.WriteIntoPart(part=right_part, item=right_item)
+			except IndexError as e:
+				print('Index error detected while writing header/footer')
+				print('Skip writing item and go to next sheet.')
 
 	def WriteAll(self, items : list) -> None:
 		print('WriteAll')
+
+		wb = openpyxl.load_workbook(self.path)
+
+		for item in items:
+			header_footer_item = self.ExportItem(src=item)
+			ws = wb[item.name]
+			try:
+				left_part = self.GetLeftPartFromSheet(sheet=ws)
+				left_item = header_footer_item[0]
+				self.WriteIntoPart(part=left_part, item=left_item)
+
+				center_part = self.GetCenterPartFromSheet(sheet=ws)
+				center_item = header_footer_item[1]
+				self.WriteIntoPart(part=center_part, item=center_item)
+
+				right_part = self.GetRightPartFromSheet(sheet=ws)
+				right_item = header_footer_item[2]
+				self.WriteIntoPart(part=right_part, item=right_item)
+			except IndexError as e:
+				print('Index error detected while writing header/footer')
+				print('Skip writing item and go to next sheet.')
 
 	def Read(self) -> list:
 		wb = openpyxl.load_workbook(self.path)
@@ -61,8 +103,15 @@ class ExcelFile(OfficeFile.IOfficeFile):
 		item = part.text
 		return item
 
-	@abc.abstractclassmethod
+	def WriteIntoPart(self, part : _HeaderFooterPart, item : str) -> None:
+		part.text = item
+
+	@abc.abstractmethod
 	def AppendItem(self, dst : OfficeHeaderFooter, item : HeaderFooterItem) -> None:
+		raise NotImplementedError()
+
+	@abc.abstractmethod
+	def ExportItem(self, src : OfficeHeaderFooter) -> list:
 		raise NotImplementedError()
 
 	@abc.abstractmethod
