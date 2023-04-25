@@ -21,8 +21,8 @@ class ExcelFile(OfficeFile.IOfficeFile):
 		print('WriteAll')
 
 	def Read(self) -> list:
-		with openpyxl.load_workbook(self.path) as wb:
-			items = self.ReadFromBook(wb)
+		wb = openpyxl.load_workbook(self.path)
+		items = self.ReadFromBook(wb)
 
 		return items
 
