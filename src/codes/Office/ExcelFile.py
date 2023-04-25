@@ -24,21 +24,7 @@ class ExcelFile(OfficeFile.IOfficeFile):
 
 			for sheet_name in wb.sheetnames:
 				ws = wb[sheet_name]
-				try:
-					left_part = self.GetLeftPartFromSheet(sheet=ws)
-					left_item = header_footer_item[0]
-					self.WriteIntoPart(part=left_part, item=left_item)
-
-					center_part = self.GetCenterPartFromSheet(sheet=ws)
-					center_item = header_footer_item[1]
-					self.WriteIntoPart(part=center_part, item=center_item)
-
-					right_part = self.GetRightPartFromSheet(sheet=ws)
-					right_item = header_footer_item[2]
-					self.WriteIntoPart(part=right_part, item=right_item)
-				except IndexError as e:
-					print('Index error detected while writing header/footer')
-					print('Skip writing item and go to next sheet.')
+				self.WriteIntoSheet(ws=ws, header_footer_item=header_footer_item)
 
 	def WriteAll(self, items : list) -> None:
 		try:
@@ -56,10 +42,14 @@ class ExcelFile(OfficeFile.IOfficeFile):
 					self.WriteIntoSheet(ws=ws, header_footer_item=header_footer_item)
 
 	def Read(self) -> list:
-		wb = openpyxl.load_workbook(self.path)
-		items = self.ReadFromBook(wb)
+		try:
+			wb = openpyxl.load_workbook(self.path)
+		except FileNotFoundError:
+			print('Input file not found.')
+		else:
+			items = self.ReadFromBook(wb)
 
-		return items
+			return items
 
 	def ReadFromBook(self, wb : Workbook) -> list:
 		sheet_names = wb.sheetnames
