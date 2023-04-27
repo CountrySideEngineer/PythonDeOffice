@@ -19,6 +19,9 @@ class ExcelFileFooter(ExcelFile):
 		"""
 		dst.footers.append(item)
 
+	def ExportItem(self, src: OfficeHeaderFooter) -> list:
+		return src.footers
+
 	def GetLeftPartFromSheet(self, sheet : worksheet) -> _HeaderFooterPart:
 		part = sheet.oddFooter.left
 		return part
