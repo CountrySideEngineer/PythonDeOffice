@@ -40,7 +40,9 @@ class ExcelFile(OfficeFile.IOfficeFile):
 				try:
 					ws = wb[item.name]
 				except IndexError:
-					print(f'{item.name} can not find.')
+					print(f'{item.name} can not find and skip the sheet.')
+				except KeyError:
+					print(f'{item.name} can not find and skip the sheet.')
 				else:
 					self.WriteIntoSheet(ws=ws, header_footer_item=header_footer_item)
 
