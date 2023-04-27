@@ -26,6 +26,9 @@ class ExcelFile(OfficeFile.IOfficeFile):
 				ws = wb[sheet_name]
 				self.WriteIntoSheet(ws=ws, header_footer_item=header_footer_item)
 
+			wb.save()
+			wb.close()
+
 	def WriteAll(self, items : list) -> None:
 		try:
 			wb = openpyxl.load_workbook(self.path)
@@ -40,6 +43,9 @@ class ExcelFile(OfficeFile.IOfficeFile):
 					print(f'{item.name} can not find.')
 				else:
 					self.WriteIntoSheet(ws=ws, header_footer_item=header_footer_item)
+
+			wb.save(self.path)
+			wb.close()
 
 	def Read(self) -> list:
 		try:
