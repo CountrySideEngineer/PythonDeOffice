@@ -19,6 +19,9 @@ class ExcelFileHeader(ExcelFile):
 		"""
 		dst.headers.append(item)
 
+	def ExportItem(self, src: OfficeHeaderFooter) -> list:
+		return src.headers
+
 	def GetLeftPartFromSheet(self, sheet : worksheet) -> _HeaderFooterPart:
 		"""Retunrs left header object
 
