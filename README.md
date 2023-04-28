@@ -1,6 +1,6 @@
 # PythonDeOffice
 [PythonDeOffice](https://github.com/CountrySideEngineer/PythonDeOffice) is a repository of useful python code to unify the formatting of MS Office file.
-These codes will allow you to edit and configure with MS Office more efficiently.
+These codes will allow you to edit and configure with MS Office more efficiently.  
 [![LICENSE](https://img.shields.io/badge/License-MIT-brightfreen.svg)](https://spdx.org/licenses/MIT)
 
 # Requirements
